@@ -6,8 +6,7 @@ $m = new Mustache_Engine(array(
     'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__) . '/views'),
 ));
 
-if (!isset($_SESSION))
-  session_start();
+ session_start();
 
 if (isset($_SESSION['auth_user']) && $_SESSION["auth_user"]) {
   echo $m->render('main');

@@ -5,6 +5,7 @@ $dbuser = $config['username'];
 $dbpass = $config['password'];
 $email = htmlspecialchars($_POST["email"]);
 $user_pass = htmlspecialchars($_POST["pass"]);
+session_start();
 try
 {
   $db = new PDO('mysql:host=localhost;dbname=friend_finder', $dbuser, $dbpass);
@@ -18,12 +19,13 @@ catch (PDOException $e)
   print "Error!: " . $e->getMessage() . "<br/>";
   die();
 }
+
 if ($stored_pass == $user_pass){
-  _SESSION['auth_user'] = TRUE;
+  $_SESSION['auth_user'] = TRUE;
   header('Location: index.php');
   exit();
 } else{
-  _SESSION['invalid'] = TRUE;
+  $_SESSION['invalid'] = TRUE;
   header('Location: index.php');
   exit();
 }
