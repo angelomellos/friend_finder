@@ -12,16 +12,4 @@ $params['id'] = '1A-000';
 $result = $client->get($params);
 print_r($result);
 
-
-
-//try {
-  //  $dbh = new PDO('mysql:host=localhost;dbname=mysql', 'root', 'mushroomshopper');
-    //foreach($dbh->query('SELECT * from help_topic') as $row) {
-      //  print_r($row);
-   // }
-   // $dbh = null;
-//} catch (PDOException $e) {
-  //  print "Error!: " . $e->getMessage() . "<br/>";
-    //die();
-//}
 ?>
