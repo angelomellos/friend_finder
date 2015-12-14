@@ -19,10 +19,12 @@ catch (PDOException $e)
   die();
 }
 if ($stored_pass == $user_pass){
-  _SESSION['auth_user']= TRUE;
+  _SESSION['auth_user'] = TRUE;
   header('Location: index.php');
   exit();
 } else{
-  print 'invalid credentials';
+  _SESSION['invalid'] = TRUE;
+  header('Location: index.php');
+  exit();
 }
 ?>
