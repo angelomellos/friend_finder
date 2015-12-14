@@ -1,5 +1,6 @@
 {
     "require": {
-        "elasticsearch/elasticsearch": "~2.0@beta"
+        "elasticsearch/elasticsearch": "~2.0@beta",
+	"mustache/mustache": "~2.5"
     }
 }

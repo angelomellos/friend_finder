@@ -2,16 +2,19 @@
 require 'vendor/autoload.php';
 use Elasticsearch\ClientBuilder;
 $client = ClientBuilder::create()->build();
+$m = new Mustache_Engine(array(
+    'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__) . '/views'),
+));
 
 if (!isset($_SESSION))
   session_start();
 
 if (isset($_SESSION['auth_user']) && $_SESSION["auth_user"]) {
-  echo 'main page here';
+  echo $m->render('main');
 } else{
   if($_SESSION['invalid'])
     echo 'invalid username or password';
-  echo 'login form here';
+  echo $m->render('login-form');
 }
 
 $params['index'] = 'pokemon';
