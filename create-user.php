@@ -9,7 +9,8 @@ $password = htmlspecialchars($_POST["password"]);
 try
 {
   $db = new PDO('mysql:host=localhost;dbname=friend_finder', $dbuser, $dbpass);
-  $query = $db->prepare("INSERT INTO users VALUES ($email, $password)");
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $query = $db->prepare("INSERT INTO users VALUES ('$email', '$password')");
   $query->execute();
   $db = null;
 }
