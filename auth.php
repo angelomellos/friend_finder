@@ -15,5 +15,4 @@ catch (PDOException $e)
 }
 print_r($users);
 
-
 ?>
