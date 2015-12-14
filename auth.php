@@ -3,8 +3,8 @@ require 'vendor/autoload.php';
 $config = parse_ini_file('/../../../config.ini');
 $dbuser = $config['username'];
 $dbpass = $config['password'];
-$email = htmlspecialchars($_POST["email"]);
-$user_pass = htmlspecialchars($_POST["pass"]);
+$email = $_POST["email"];
+$user_pass = $_POST["pass"];
 session_start();
 try
 {
@@ -23,6 +23,7 @@ catch (PDOException $e)
 
 if ($stored_pass == $user_pass){
   $_SESSION['auth_user'] = TRUE;
+  $_SESSION['user_email'] = $email;
   header('Location: index.php');
   exit();
 } else{
