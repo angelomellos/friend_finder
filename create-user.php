@@ -1,5 +1,7 @@
 <?php
 require 'vendor/autoload.php';
+use Elasticsearch\ClientBuilder;
+$client = ClientBuilder::create()->build();
 $config = parse_ini_file('/../../../config.ini');
 $dbuser = $config['username'];
 $dbpass = $config['password'];

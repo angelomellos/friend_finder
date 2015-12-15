@@ -1,2 +1,29 @@
-the main page here<br>
-found: {{found}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
+<input type="text" id="search"></input><br>
+matches:<br>
+{{#friends}}
+<div class="friend" data-address="{{city}}">
+Name: {{first-name}}{{last-name}}<br>
+city: {{city}}<br><br>
+</div>
+{{/friends}}
+<div id="map-div">
+<iframe id="map" width="600" height="450" frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key={{key}}&q={{origin}}">
+</iframe>
+</div>
+<script>
+$(".friend").click(function() {
+  console.log($(this).context.dataset.address);
+  var address = $(this).context.dataset.address;
+  $("iframe").remove();
+  $('<iframe />');
+  $('<iframe />', {
+     width: '600',
+     height: '450',
+     id: 'map-frame',
+     src: 'https://www.google.com/maps/embed/v1/directions?origin={{origin}}&destination=' + address + '&key={{key}}'
+  }).appendTo('#map-div');
+})
+</script>
