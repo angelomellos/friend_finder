@@ -12,7 +12,7 @@ try
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $query = $db->prepare("SELECT * from users WHERE email='$email'");
   $query->execute();
-  $stored_pass = $query->fetchAll()[0]['password'];
+  $pass_hash = $query->fetchAll()[0]['password'];
   $db = null;
 }
 catch (PDOException $e)
@@ -21,7 +21,7 @@ catch (PDOException $e)
   die();
 }
 
-if ($stored_pass == $user_pass){
+if (password_verify($user_pass, $pass_hash)){
   $_SESSION['auth_user'] = TRUE;
   $_SESSION['user_email'] = $email;
   header('Location: index.php');

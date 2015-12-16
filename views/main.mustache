@@ -1,7 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 </script>
 <input type="text" id="search"></input><br>
-matches:<br>
 {{#friends}}
 <div class="friend" data-address="{{city}}">
 Name: {{first-name}}{{last-name}}<br>
@@ -25,5 +24,24 @@ $(".friend").click(function() {
      id: 'map-frame',
      src: 'https://www.google.com/maps/embed/v1/directions?origin={{origin}}&destination=' + address + '&key={{key}}'
   }).appendTo('#map-div');
+});
+
+$("#search").click(function(){
+  var body = { 
+    "query" : {
+      "multi_match" : {
+        "query" : "detroit",
+        "fields" : [ "first-name", "last-name", "city", "address", "state" ]
+        }
+    }
+};
+  $.ajax({
+    method: "POST",
+    url: "http://159.203.140.74:9200/friends/friends/_search",
+    contentType: "application/json",
+    data: JSON.stringify(body)
+  }).done(function(res){
+    console.log(res);
+  })
 })
 </script>

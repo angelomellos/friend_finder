@@ -7,7 +7,7 @@ $dbuser = $config['username'];
 $dbpass = $config['password'];
 session_start();
 $email = $_POST["email"];
-$password = $_POST["password"];
+$password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 //TODO: hash password
 try
 {
@@ -40,6 +40,6 @@ $result = $client->index($params);
 
 $_SESSION['user_email'] = $_POST["email"];
 $_SESSION['auth_user'] = TRUE;
-header('Location: index.php');
+header('Location: confirmation.php');
 exit();
 ?>
