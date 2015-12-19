@@ -1,0 +1,41 @@
+#map{
+  width: 600px;
+  height: 495px;
+}
+.directions{
+  height: 195px;
+}
+.friend {
+  background-color: antiquewhite;
+  border-left: black dashed;
+  border-right: black dashed;
+  border-bottom: black dashed;
+  width: 350px;
+  height: 75px;
+  cursor: pointer;
+}
+#friend-container :first-child{
+  border-top: black dashed;
+}
+#friend-container {
+  max-height: 474px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+#search{
+  width: 355px;
+  height: 50px;
+  border: black dotted;
+  margin-bottom: 3px;
+}
+.main-text{
+  font-size: 22px;
+  font-weight: 600;
+}
+.search-results{
+  display: inline;
+  float: left;
+}
+#map-div{
+  display: inline;
+}
