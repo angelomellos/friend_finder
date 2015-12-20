@@ -1,1 +1,15 @@
-login form here <br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
+<form action="auth.php" method="post">
+  Email:<br>
+  <input type="text" name="email">
+  <br>
+  Password:<br>
+  <input type="password" name="pass">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+<button id="sign-up">Sign Up</button>
+<script>
+$('#sign-up').click(() => $(location).attr('href', 'sign-up.php'));
+</script>

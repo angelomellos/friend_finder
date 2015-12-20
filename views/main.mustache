@@ -1,1 +1,32 @@
-the main page here
+<head>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap">
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+  </script>
+  <script src="/..js/maps.js"></script>
+  <script src="/..js/friends.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body>
+  <div class="search-results">
+    <div class="main-text">Search:</div>
+      <input class="main-text" type="text" id="search" placeholder="Everyone"></input><br>
+    <div class="main-text">Results:</div>
+    <div id="friend-container">
+      {{#friends}}
+      <div class="friend" data-address="{{city}}">
+        Name: {{first-name}}{{last-name}}<br>
+        city: {{city}}<br><br>
+      </div>
+      {{/friends}}
+    </div>
+  </div>
+  <div id="map-div">
+    <iframe id="map"
+      src="https://www.google.com/maps/embed/v1/place?key={{key}}&q={{origin}}">
+    </iframe>
+    <div id="directions"></div>
+  </div>
+</body>
