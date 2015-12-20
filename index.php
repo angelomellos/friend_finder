@@ -22,14 +22,13 @@ function get_all_friends($config){
   $params = [];
   $params['index'] = 'friends';
   $params['type'] = 'friends';
-  $params['size'] = 20;
+  $params['size'] = 1000;
   $params['body']['query']['match_all'] = [$_GET['search']];
   $params['body']['sort'] = ['_score'];
   $result = $client->search($params)['hits']['hits'];
   $sources = array_map(function($arr){
     return $arr['_source'];
-  }
-  ,$result);
+  },$result);
   $current_user_location = get_address_from_source(extract_current_user($sources, $_SESSION['user_email']));
   $config = parse_ini_file('/../../../config.ini');
   return array(friends => new ArrayIterator($sources), key => $config['maps_key'], origin => $current_user_location);
@@ -48,7 +47,7 @@ function extract_current_user(&$sources, $email){
 }
 
 function get_address_from_source($source){
-  return $source['address'] . ' ' . $source['city'] . ', ' . $source['state'] . ' ' . $source['zip']; 
+  return $source['address'] . ' ' . $source['city'] . ', ' . $source['state'];
 }
 
 ?>
