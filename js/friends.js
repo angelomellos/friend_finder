@@ -1,27 +1,37 @@
+$(document).ready(function(){
 function friendClick(){
   $(".friend").click(function() {
-    var address = $(this).context.dataset.address;
+    $(".friend").removeClass("active-friend");
+    $(this).addClass("active-friend");
+    var address = $(this)[0].dataset.address;
     $("iframe").remove();
     $('<iframe />');
     $('<iframe />', {
        width: '600',
        height: '450',
        id: 'map',
-       src: 'https://www.google.com/maps/embed/v1/directions?origin={{origin}}&destination=' + address + '&key={{key}}'
+       style: "display: "+ ($(".selected-button").hasClass("map-button") ? "inline" : "none"),
+       src: 'https://www.google.com/maps/embed/v1/directions?origin='+ $("#origin")[0].dataset.address + '&destination=' + address + '&key=AIzaSyCI6UJn0C4MdiUGS_7kz-e-W9_1wmjJkuA'
     }).appendTo('#map-div');
   }
 )};
 friendClick();
 $("#search").keyup(function(){
-  var body = {
-    "query" : {
-      "multi_match" : {
-        "query" : $("#search").val() + "*",
-        "fields" : [ "first-name", "last-name", "city", "address", "state" ],
-        "type" : "phrase_prefix"
-        }
-    }
-  };
+  if(!$("#search").val()){
+    body =  {"query": { "match_all": {} }}
+  } else 
+  {
+    var body = 
+    {
+      "query" : {
+        "multi_match" : {
+          "query" : $("#search").val() + "*",
+          "fields" : [ "full-name", "first-name", "last-name", "city", "address", "state" ],
+          "type" : "phrase_prefix"
+          }
+      }
+    };
+  }
   $.ajax({
     method: "POST",
     url: "http://159.203.140.74:9200/friends/friends/_search",
@@ -34,10 +44,10 @@ $("#search").keyup(function(){
       $("<div>")
       .addClass("friend")
       .attr("data-address", hits[i]._source.city)
-      .html("Name: " + hits[i]._source["first-name"] +
-      " " + hits[i]._source["last-name"] + "<br>City: " + hits[i]._source.city)
+      .html(hits[i]._source["full-name"] + "<br>" + hits[i]._source.city + ", " + hits[i]._source.state)
       .appendTo("#friend-container");
     };
     friendClick();
   })
+})
 })
