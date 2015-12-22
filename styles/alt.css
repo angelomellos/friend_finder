@@ -1,0 +1,15 @@
+body {
+  background-color: lightgrey;
+}
+input, button {
+  width: 190px;
+  height: 30px;
+  border: cornflowerblue dashed;
+  color: cornflowerblue;
+  font-size: 20px;
+}
+submit {
+  color: cornflowerblue;
+  width: 190px
+  height: 30px;
+}

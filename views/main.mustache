@@ -1,15 +1,11 @@
 <head>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap">
-  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
   </script>
-  <script src="/js/map.js"></script>
-  <script src="/js/friends.js"></script>
   <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 
 <body>
+  <div display="none" id="origin" data-address="{{origin}}"></div>
   <div class="search-results">
     <div class="main-text">Search:</div>
       <input class="main-text" type="text" id="search" placeholder="Everyone"></input><br>
@@ -17,16 +13,27 @@
     <div id="friend-container">
       {{#friends}}
       <div class="friend" data-address="{{city}}">
-        Name: {{first-name}}{{last-name}}<br>
-        city: {{city}}<br><br>
+        {{full-name}}<br>
+        {{city}}, {{state}}<br>
       </div>
       {{/friends}}
     </div>
   </div>
+<div id="buttons">
+<button class="map-button selected-button" data-mode="DRIVING">Map</button>
+<button class="directions-button" data-mode="DRIVING">Driving</button>
+<button class="directions-button" data-mode="TRANSIT">Transit</button>
+<button class="directions-button" data-mode="WALKING">Walking</button>
+</div>
   <div id="map-div">
     <iframe id="map"
       src="https://www.google.com/maps/embed/v1/place?key={{key}}&q={{origin}}">
     </iframe>
     <div id="directions"></div>
   </div>
+<script src="/js/friends.js"></script>
+<script src="/js/map.js"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap">
+  </script>
 </body>

@@ -1,21 +1,62 @@
+button {
+  background: transparent;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: cornflowerblue;
+  color: cornflowerblue;
+  cursor: pointer;
+  height: 30px;
+  width: 90px;
+  outline: none;
+}
+.selected-button {
+  background: gold;
+  color: black;
+  border-color: black;
+}
+#buttons {
+  padding-top: 30px;
+}
 #map{
-  width: 600px;
-  height: 495px;
+  width: 730px;
+  height: 514px;
+  float: left;
+  margin-top: 10px;
 }
 #directions{
-  height: 195px;
+  margin-top: 10px;
+  height: 517px;
+  width: 730px;
+  float: left;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: white;
+  display: none;
 }
 .friend {
-  background-color: antiquewhite;
-  border-left: black dashed;
-  border-right: black dashed;
-  border-bottom: black dashed;
+  border-left: cornflowerblue dashed;
+  border-right: cornflowerblue dashed;
+  border-top: cornflowerblue dashed;
   width: 350px;
   height: 75px;
   cursor: pointer;
+  color: cornflowerblue;
 }
-#friend-container :first-child{
+.active-friend {
+  color: black;
+  border-left: black dashed;
+  border-right: black dashed;
   border-top: black dashed;
+  background-color: gold;
+}
+.active-friend + .friend {
+  border-top: black dashed;
+}
+[class~='active-friend']:last-of-type {
+  border-bottom: black dashed;
+}
+#friend-container :last-child {
+  border-bottom: cornflowerblue dashed;
 }
 #friend-container {
   max-height: 474px;
@@ -25,12 +66,13 @@
 #search{
   width: 355px;
   height: 50px;
-  border: black dotted;
+  border: cornflowerblue dotted;
   margin-bottom: 3px;
 }
 .main-text{
   font-size: 22px;
   font-weight: 600;
+  color: cornflowerblue;
 }
 .search-results{
   display: inline;
@@ -38,4 +80,7 @@
 }
 #map-div{
   display: inline;
+}
+body {
+  background-color: lightgrey;
 }

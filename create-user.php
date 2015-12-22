@@ -27,6 +27,7 @@ $params = array();
 $params['body']  = array(
   'first-name' => $_POST["first-name"],
   'last-name' => $_POST["last-name"],
+  'full-name' => $_POST["first-name"] . " " . $_POST["last-name"], 
   'city' => $_POST["city"],
   'state' => $_POST["state"],
   'address' => $_POST["address"],
