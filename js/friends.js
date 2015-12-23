@@ -1,5 +1,5 @@
 $(document).ready(function(){
-function friendClick(){
+function renderMapOnClick(){
   $(".friend").click(function() {
     $(".friend").removeClass("active-friend");
     $(this).addClass("active-friend");
@@ -15,7 +15,10 @@ function friendClick(){
     }).appendTo('#map-div');
   }
 )};
-friendClick();
+renderMapOnClick();
+$(".friend").one("click", function(){
+    $("#no-friend-msg").remove();
+  });
 $("#search").keyup(function(){
   if(!$("#search").val()){
     body =  {"query": { "match_all": {} }}
@@ -47,7 +50,7 @@ $("#search").keyup(function(){
       .html(hits[i]._source["full-name"] + "<br>" + hits[i]._source.city + ", " + hits[i]._source.state)
       .appendTo("#friend-container");
     };
-    friendClick();
+    renderMapOnClick();
   })
 })
 })
