@@ -53,7 +53,7 @@ button {
   border-top: black dashed;
 }
 [class~='active-friend']:last-of-type {
-  border-bottom: black dashed;
+  border-bottom: black dashed !important;
 }
 #friend-container :last-child {
   border-bottom: cornflowerblue dashed;
