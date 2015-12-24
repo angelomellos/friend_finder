@@ -12,7 +12,7 @@
     <div class="main-text">Results:</div>
     <div id="friend-container">
       {{#friends}}
-      <div class="friend" data-address="{{city}}">
+      <div class="friend" data-address="{{address}} {{city}}, {{state}}">
         {{full-name}}<br>
         {{city}}, {{state}}<br>
       </div>
@@ -29,7 +29,9 @@
     <iframe id="map"
       src="https://www.google.com/maps/embed/v1/place?key={{key}}&q={{origin}}">
     </iframe>
-    <div id="directions"></div>
+    <div id="directions">
+      <p id="no-friend-msg">Just select a friend from the list on the left.</p>
+    </div>
   </div>
 <script src="/js/friends.js"></script>
 <script src="/js/map.js"></script>
