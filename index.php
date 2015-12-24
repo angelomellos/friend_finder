@@ -39,6 +39,7 @@ function extract_current_user(&$sources, $email){
     if ($source['email'] == $email){
          $current_user_source = $sources[$key];
          unset($sources[$key]);
+         $sources = array_values($sources);
     }
   }
   if (!$current_user_source)

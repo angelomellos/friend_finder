@@ -8,7 +8,6 @@ $dbpass = $config['password'];
 session_start();
 $email = $_POST["email"];
 $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-//TODO: hash password
 try
 {
   $db = new PDO('mysql:host=localhost;dbname=friend_finder', $dbuser, $dbpass);
@@ -22,7 +21,6 @@ catch (PDOException $e)
   print "Error!: " . $e->getMessage() . "<br/>";
   die();
 }
-//TODO:try{}
 $params = array();
 $params['body']  = array(
   'first-name' => $_POST["first-name"],
